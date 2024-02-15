@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/activitymainLinearLayoutRegexes"
+		android:layout_margin="10dp"
+		android:layout_alignParentTop="true"/>
+
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Remove regex input"
+		android:layout_gravity="center_horizontal"
+		android:id="@+id/activitymainButtonRemoveRegexInput"
+		android:layout_below="@id/activitymainLinearLayoutRegexes"
+		android:layout_centerHorizontal="true"
+		android:visibility="gone"/>
+
+	<EditText
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:layout_alignParentBottom="true"
+		android:id="@+id/activitymainEditTextPreview"
+		android:gravity="top|start"
+		android:background="@drawable/text_input_bg"
+		android:layout_below="@id/activitymainButtonRemoveRegexInput"/>
+
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Apply"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentEnd="true"
+		android:layout_marginEnd="16dp"
+		android:layout_marginBottom="16dp"
+		android:id="@+id/activitymainButtonApply"/>
+
+</RelativeLayout>
+
