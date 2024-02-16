@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="@Theme.AppCompat.DayNight.NoActionBar">
+		<item name="colorPrimary">@color/background</item>
+		<item name="colorPrimaryDark">@color/background</item>
+		<item name="colorAccent">@color/primary</item>
+		<item name="android:windowBackground">@color/background</item>
+		<item name="android:windowLightStatusBar">@bool/isLightMode</item>
+		<item name="android:windowLightNavigationBar">@bool/isLightMode</item>
+		<item name="android:statusBarColor">@color/background</item>
+		<item name="android:navigationBarColor">@color/background</item>
+		<item name="android:textColor">@color/onSurfaceVariant</item>
 	</style>
+
+	<style name="OverflowTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+		<item name="android:textColor">@color/onSurfaceVariant</item>
+		<item name="android:textColorPrimary">@color/onSurface</item>
+		<item name="android:popupBackground">@drawable/rounded_popup_bg</item>
+	</style>
+	
+	<style name="AppBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+		<item name="android:textColor">@color/onSurface</item>
+		<item name="android:textSize">22sp</item>
+	</style>
+	
+	<style name="AppBarLayoutTheme" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+		<item name="android:textColor">@color/onSurfaceVariant</item>
+		<item name="android:textColorPrimary">@color/onSurface</item>
+		<item name="actionOverflowMenuStyle">@style/OverflowTheme</item>
+	</style>
+
+	<style name="PrimaryButton">
+		<item name="android:drawableTint">@color/onPrimary</item>
+		<item name="android:textColor">@color/onPrimary</item>
+		<item name="android:drawablePadding">@dimen/button_between_elements_padding</item>
+		<item name="android:paddingLeft">@dimen/button_left_padding</item>
+		<item name="android:paddingRight">@dimen/button_right_padding</item>
+		<item name="android:background">@drawable/primary_button_bg</item>
+	</style>
+	
+	<style name="FloatingActionButtonTheme" parent="Theme.MaterialComponents.Light">
+		<item name="backgroundTint">@color/primaryContainer</item>
+		<item name="tint">@color/onPrimaryContainer</item>
+	</style>
+	
 </resources>
