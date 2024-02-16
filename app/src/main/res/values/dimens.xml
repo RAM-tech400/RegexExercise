@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_corner_radius">24dp</dimen>
+	
+	<dimen name="button_height">40dp</dimen>
+	<dimen name="button_corner_radius">40dp</dimen>
+	<dimen name="button_left_padding">24dp</dimen>
+	<dimen name="button_right_padding">24dp</dimen>
+	<dimen name="button_left_padding_with_icon">16dp</dimen>
+	<dimen name="button_between_elements_padding">8dp</dimen>
+	
+	<dimen name="fab_size">56dp</dimen>
+	<dimen name="fab_corner_radius">16dp</dimen>
+	<dimen name="fab_padding">16dp</dimen>
+	<dimen name="fab_elevation">16dp</dimen>
+	<dimen name="fab_pressed_elevation">4dp</dimen>
+</resources>
