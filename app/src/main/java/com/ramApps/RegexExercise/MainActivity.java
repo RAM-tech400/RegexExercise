@@ -1,6 +1,5 @@
 package com.ramApps.RegexExercise;
  
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -25,14 +24,19 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends Activity { 
+public class MainActivity extends AppCompatActivity { 
     
 	public static final int FLAG_REGEX_STYLE_FOREGROUND = 2;
 	public static final int FLAG_REGEX_STYLE_BACKGROUND = 4;
 
+	private Toolbar toolbar;
 	private LinearLayout llRegexList;
-	private Button btnRemoveRegex, btnApplyRegex;
+	private Button btnRemoveRegex;
+	private FloatingActionButton fabApplyRegex;
 	private EditText etPreview;
 
     @Override
@@ -41,13 +45,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         init();
 		addListeners();
-		AddRegexInput(getColor(R.color.colorAccent), FLAG_REGEX_STYLE_FOREGROUND);
+		AddRegexInput(getColor(R.color.primary), FLAG_REGEX_STYLE_FOREGROUND);
+		setSupportActionBar(toolbar);
     }
 
 	private void init() {
+		toolbar = findViewById(R.id.activity_main_Toolbar);
 		llRegexList = findViewById(R.id.activitymainLinearLayoutRegexes);
 		btnRemoveRegex = findViewById(R.id.activitymainButtonRemoveRegexInput);
-		btnApplyRegex = findViewById(R.id.activitymainButtonApply);
+		fabApplyRegex = findViewById(R.id.activitymainFabApply);
 		etPreview = findViewById(R.id.activitymainEditTextPreview);
 	}
 
@@ -62,7 +68,7 @@ public class MainActivity extends Activity {
 				}
 			});
 		
-		btnApplyRegex.setOnClickListener(new View.OnClickListener() {
+		fabApplyRegex.setOnClickListener(new View.OnClickListener() {
 
 				@Override
 				public void onClick(View view) {
@@ -109,6 +115,7 @@ public class MainActivity extends Activity {
 		TextView tv = new TextView(this);
 		tv.setText(styleFlag == FLAG_REGEX_STYLE_FOREGROUND? "F" : "B");
 		tv.setTextSize(28);
+		tv.setTextColor(0x88888888);
 		tv.setGravity(Gravity.CENTER);
 		GradientDrawable gdCircle = new GradientDrawable();
 		gdCircle.setShape(GradientDrawable.OVAL);
@@ -128,6 +135,7 @@ public class MainActivity extends Activity {
 		EditText et = new EditText(this);
 		et.setSingleLine();
 		et.requestFocus();
+		et.setTextColor(getColor(R.color.onSurfaceVariant));
 		et.setBackgroundResource(R.drawable.text_input_bg);
 		et.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		et.setOnEditorActionListener(new OnEditorActionListener(){
