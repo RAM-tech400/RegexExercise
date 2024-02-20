@@ -37,10 +37,28 @@
 		<item name="android:paddingRight">@dimen/button_right_padding</item>
 		<item name="android:background">@drawable/primary_button_bg</item>
 	</style>
+
+	<style name="DialogAccentButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+		<item name="android:drawableTint">@color/primary</item>
+		<item name="android:textColor">@color/primary</item>
+		<item name="android:drawablePadding">@dimen/button_between_elements_padding</item>
+		<item name="android:background">@drawable/dialog_accent_button_bg</item>
+		<item name="android:paddingLeft">@dimen/button_left_padding</item>
+		<item name="android:paddingRight">@dimen/button_right_padding</item>
+	</style>
 	
 	<style name="FloatingActionButtonTheme" parent="Theme.MaterialComponents.Light">
 		<item name="backgroundTint">@color/primaryContainer</item>
 		<item name="tint">@color/onPrimaryContainer</item>
+	</style>
+	
+	<style name="AlertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+		<item name="colorAccent">@color/primary</item>
+		<item name="android:buttonBarButtonStyle">@style/DialogAccentButton</item>
+		<item name="android:textColorPrimary">@color/onSurface</item>
+		<item name="android:textColor">@color/onSurfaceVariant</item>
+		<item name="android:windowBackground">@drawable/rounded_popup_bg</item>
+		<item name="android:windowTitleStyle">@style/AppBar.TitleText</item>
 	</style>
 	
 </resources>

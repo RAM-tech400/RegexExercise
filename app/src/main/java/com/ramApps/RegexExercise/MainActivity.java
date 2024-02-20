@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 			rg.check(R.id.styleselectiondialogRadioButtonBackground);
 		}
 		
-		AlertDialog dialog = new AlertDialog.Builder(this)
+		AlertDialog dialog = new AlertDialog.Builder(this, R.style.AlertDialogTheme)
 			.setTitle("Select regex style:")
 			.setView(v)
 			.setPositiveButton("Select", new DialogInterface.OnClickListener() {
