@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
 				@Override
 				public void onClick(View view) {
-					//selectRegexStyle(view);
+					selectRegexStyle(view);
 				}
 			});
 		
@@ -162,65 +162,34 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void selectRegexStyle(final View viewStylePreview) {
-		LinearLayout ll = new LinearLayout(this);
-		ll.setOrientation(ll.VERTICAL);
-		ll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		
-		EditText et = new EditText(this);
-		//et.setText(Integer.parseInt(viewStylePreview.getTag() + ""));
-		et.requestFocus();
-		et.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, (int) getPixelDimension(56)));
-		((LayoutParams) et.getLayoutParams()).setMarginStart((int) getPixelDimension(24));
-		((LayoutParams) et.getLayoutParams()).setMarginEnd((int) getPixelDimension(24));
-		
-		RadioGroup rg = new RadioGroup(this);
-		rg.setOrientation(rg.HORIZONTAL);
-		rg.setWeightSum(2);
-		rg.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		
-		RadioButton rbForeground = new RadioButton(this);
-		rbForeground.setText("Foreground");
-		rbForeground.setChecked(true);
-		rbForeground.setLayoutParams((new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)));
-		((LayoutParams) rbForeground.getLayoutParams()).weight = 1;
-		
-		RadioButton rbBackground = new RadioButton(this);
-		rbBackground.setText("Background");
-		rbBackground.setLayoutParams((new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)));
-		((LayoutParams) rbBackground.getLayoutParams()).weight = 1;
-		
-		rg.addView(rbForeground);
-		rg.addView(rbBackground);
-		ll.addView(et);
-		ll.addView(rg);
-		
-		final String colorHexCode = et.getText().toString();
-		final String styleSection = rbForeground.isChecked()? "F" : "B";
+		View v = getLayoutInflater().inflate(R.layout.style_selection_dialog, null); 
+		final ColorSelectionView csv = v.findViewById(R.id.style_selection_dialog_ColorSelectionView);
+		csv.setDefaultColor(Integer.parseInt(((TextView) viewStylePreview).getTag() + ""));
+		final RadioGroup rg = v.findViewById(R.id.styleselectiondialogRadioGroupStyleTarget);
+		if(((TextView) viewStylePreview).getText().equals("F")) {
+			rg.check(R.id.styleselectiondialogRadioButtonForeground);
+		} else {
+			rg.check(R.id.styleselectiondialogRadioButtonBackground);
+		}
 		
 		AlertDialog dialog = new AlertDialog.Builder(this)
-			.setTitle("Select style")
-			.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+			.setTitle("Select regex style:")
+			.setView(v)
+			.setPositiveButton("Select", new DialogInterface.OnClickListener() {
+
 				@Override
 				public void onClick(DialogInterface dia, int which) {
-					// check color hex code
-					//Toast.makeText(getApplication(), "" + Pattern.compile("#[0-9a-fA-F]{6,8}").matcher(colorHexCode).find(), Toast.LENGTH_SHORT).show();
-					//if(Pattern.compile("#[0-9a-fA-F]{6,8}").matcher(colorHexCode).matches()) {
-						viewStylePreview.setTag(Color.parseColor("#e62243") + "");
-						((TextView) viewStylePreview).setText(styleSection);
-						
-						GradientDrawable gd = new GradientDrawable();
-						gd.setColor(gd.OVAL);
-						gd.setColor(Color.parseColor("#e62243"));
-						viewStylePreview.setBackground(gd);
-						dia.dismiss();
-					//} else {
-						//Toast.makeText(getApplication(), "Invalid color hex format", Toast.LENGTH_SHORT).show();
-					//}
+					GradientDrawable gdCircle = new GradientDrawable();
+					gdCircle.setShape(GradientDrawable.OVAL);
+					gdCircle.setColor(csv.getSelectedColor());
+					viewStylePreview.setBackground(gdCircle);
+					viewStylePreview.setTag(csv.getSelectedColor() + "");
+					
+					((TextView) viewStylePreview).setText((rg.getCheckedRadioButtonId() == R.id.styleselectiondialogRadioButtonForeground)? "F" : "B");
 				}
 			})
 			.setNegativeButton("Cancel", null)
 			.create();
-		dialog.setView(ll);
 		dialog.show();
 	}
 	
